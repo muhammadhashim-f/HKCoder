@@ -155,7 +155,11 @@ export const POLICIES = {
   },
 };
 
-export default function PolicyModal({ type = "privacy", onClose, onSelectType }) {
+// ============================================================
+// Dedicated Policy Modal — Displays ONLY the requested policy
+// Strictly isolated: NO tab switching, NO other policy links.
+// ============================================================
+export default function PolicyModal({ type = "privacy", onClose }) {
   const current = POLICIES[type] || POLICIES.privacy;
   const IconComponent = current.icon;
 
@@ -206,26 +210,6 @@ export default function PolicyModal({ type = "privacy", onClose, onSelectType })
           >
             <X size={16} />
           </button>
-        </div>
-
-        {/* Policy Tab Switcher */}
-        <div className="px-5 pt-3 pb-2 flex gap-1.5 overflow-x-auto border-b border-white/5 no-scrollbar bg-black/30">
-          {Object.values(POLICIES).map((p) => {
-            const isActive = p.id === current.id;
-            return (
-              <button
-                key={p.id}
-                onClick={() => onSelectType && onSelectType(p.id)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
-                  isActive
-                    ? "bg-[#D4AF37] text-black font-bold shadow-md shadow-[#D4AF37]/20"
-                    : "text-white/60 hover:text-white hover:bg-white/5 border border-transparent"
-                }`}
-              >
-                {p.title}
-              </button>
-            );
-          })}
         </div>
 
         {/* Content Body */}

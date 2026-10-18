@@ -589,11 +589,11 @@ export default function Auth() {
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    openPolicy("security");
+                    openPolicy("privacy");
                   }}
                   className="text-[#D4AF37] underline font-semibold hover:text-[#F0DFA0] inline cursor-pointer"
                 >
-                  Security Policy
+                  Privacy Policy
                 </button>{" "}
                 aur{" "}
                 <button
@@ -601,11 +601,11 @@ export default function Auth() {
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    openPolicy("halal");
+                    openPolicy("terms");
                   }}
                   className="text-[#D4AF37] underline font-semibold hover:text-[#F0DFA0] inline cursor-pointer"
                 >
-                  Halal Dining Rules
+                  Terms of Service
                 </button>{" "}
                 se ittefaq karta hoon.
               </label>
@@ -651,6 +651,18 @@ export default function Auth() {
             {mode === "login" ? "Sign up here" : "Log in here"}
           </button>
         </p>
+
+        {/* Security Policy link strictly shown in auth context */}
+        <div className="mt-5 pt-3 border-t border-white/10 text-center">
+          <button
+            type="button"
+            onClick={() => openPolicy("security")}
+            className="text-[11px] text-white/50 hover:text-[#D4AF37] inline-flex items-center gap-1.5 cursor-pointer transition-colors"
+          >
+            <ShieldCheck size={13} className="text-[#D4AF37]" />
+            Bank-Grade 256-bit SSL Protection · View Security Policy
+          </button>
+        </div>
       </div>
 
       {/* Google Account Chooser Modal (Device-Specific, No Hardcoded Emails) */}

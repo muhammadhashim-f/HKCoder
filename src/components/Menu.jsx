@@ -1,9 +1,10 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Search, Flame, Leaf, ShoppingCart, Heart, Crown } from "lucide-react";
+import { Search, Flame, Leaf, ShoppingCart, Heart, Crown, CheckCircle2 } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import { useFavorites } from "../context/FavoritesContext";
 import { useVIPLoader } from "../context/LoadingContext";
+import { usePolicy } from "../context/PolicyContext";
 import { flyToCart } from "../utils/flyToCart";
 import { CATEGORIES, MENU_ITEMS } from "../data/menuData";
 
@@ -18,6 +19,7 @@ export default function Menu() {
   const { addToCart } = useCart();
   const { isFavorite, toggleFavorite } = useFavorites();
   const { triggerLoader } = useVIPLoader();
+  const { openPolicy } = usePolicy();
   const [activeCategory, setActiveCategory] = useState("All");
   const [query, setQuery] = useState("");
   const [searchParams] = useSearchParams();
@@ -153,9 +155,17 @@ export default function Menu() {
           <h2 className="am-menu-heading text-3xl sm:text-5xl font-bold mb-3">
             Crafted with Tradition, Served with Royal Love
           </h2>
-          <p className="text-sm text-white/60 max-w-xl mx-auto">
+          <p className="text-sm text-white/60 max-w-xl mx-auto mb-3">
             Har plate mein sadiyon purani Mughlai riwayat, taaza desi bakray ka gosht, asli desi ghee aur dum pukht zaiqon ka be-misaal sangam.
           </p>
+          <button
+            type="button"
+            onClick={() => openPolicy("halal")}
+            className="inline-flex items-center gap-1.5 text-xs text-[#D4AF37]/90 hover:text-[#F0DFA0] bg-[#D4AF37]/10 hover:bg-[#D4AF37]/20 border border-[#D4AF37]/35 px-3.5 py-1.5 rounded-full transition-colors cursor-pointer"
+          >
+            <CheckCircle2 size={13} className="text-[#D4AF37]" />
+            100% Hand-Slaughtered Zabihah Halal · Halal Dining Rules
+          </button>
         </div>
 
         {/* Dedicated VIP Products Section */}

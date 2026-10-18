@@ -27,7 +27,6 @@ export function PolicyProvider({ children }) {
         <PolicyModal
           type={activePolicy}
           onClose={closePolicy}
-          onSelectType={setActivePolicy}
         />
       )}
     </PolicyContext.Provider>

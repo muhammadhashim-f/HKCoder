@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import {
-  MessageCircle,
   X,
   Send,
   Bot,
@@ -1351,26 +1350,41 @@ export default function Chatbot() {
   return (
     <>
       <style>{`
-        .am-chat-fab {
+        .am-chat-vip-fab {
           position: fixed;
           bottom: 24px;
           right: 24px;
           z-index: 9999;
-          width: 58px;
-          height: 58px;
+          height: 60px;
           border-radius: 9999px;
-          background: linear-gradient(135deg, #D4AF37 0%, #F5DEB3 50%, #B8860B 100%);
-          color: #0A0A0A;
+          background: linear-gradient(135deg, rgba(28, 22, 10, 0.98) 0%, rgba(14, 11, 6, 0.98) 100%);
+          border: 1.5px solid rgba(212, 175, 55, 0.75);
+          color: #FFFFFF;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 6px 18px 6px 7px;
+          box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85), 0 0 30px rgba(212, 175, 55, 0.35);
+          transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+          cursor: pointer;
+          backdrop-filter: blur(14px);
+        }
+        .am-chat-vip-fab:hover {
+          transform: translateY(-3px) scale(1.03);
+          border-color: #F0DFA0;
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95), 0 0 45px rgba(212, 175, 55, 0.6);
+        }
+        .am-chat-vip-crest {
+          width: 46px;
+          height: 46px;
+          border-radius: 9999px;
+          background: radial-gradient(circle at 35% 30%, #FFF2A8 0%, #D4AF37 55%, #8B6508 100%);
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 10px 30px rgba(212,175,55,0.4), 0 0 20px rgba(212,175,55,0.25);
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          border: 2px solid rgba(255, 255, 255, 0.25);
-        }
-        .am-chat-fab:hover {
-          transform: scale(1.08) translateY(-2px);
-          box-shadow: 0 16px 40px rgba(212,175,55,0.6);
+          color: #0A0A0A;
+          box-shadow: 0 4px 18px rgba(212, 175, 55, 0.5), inset 0 1.5px 3px rgba(255, 255, 255, 0.8);
+          position: relative;
         }
         .am-chat-window {
           position: fixed;
@@ -1519,16 +1533,38 @@ export default function Chatbot() {
         }
       `}</style>
 
-      {/* Floating Chat Button */}
+      {/* Unique & VIP Floating Chat Button (Strictly No Green Dot) */}
       {!open && (
         <button
           type="button"
           onClick={handleOpenChatbot}
-          className="am-chat-fab cursor-pointer"
-          aria-label="Open Al Madina AI Host"
+          className="am-chat-vip-fab group cursor-pointer"
+          aria-label="Open Al Madina AI Shahi Host"
         >
-          <MessageCircle size={26} />
-          <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-[#0A0A0A] animate-pulse" />
+          {/* Royal Crest Medallion with Crown */}
+          <div className="am-chat-vip-crest">
+            <Crown size={22} className="text-black group-hover:rotate-12 transition-transform duration-300" />
+          </div>
+
+          {/* Royal Text Badge */}
+          <div className="flex flex-col text-left leading-tight pr-1">
+            <div className="flex items-center gap-1.5">
+              <span
+                className="text-xs font-bold text-white tracking-wide"
+                style={{ fontFamily: "'Amiri', serif" }}
+              >
+                Al Madina AI Shahi Host
+              </span>
+              <span className="text-[9px] bg-gradient-to-r from-[#D4AF37] to-[#F0DFA0] text-black font-extrabold px-1.5 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
+                VIP
+              </span>
+            </div>
+            <span className="text-[10px] text-[#D4AF37] font-medium flex items-center gap-1 mt-0.5">
+              <span>شاہی خدمتگار</span>
+              <span className="text-white/40">·</span>
+              <span>24/7 Food & Table Guide ✨</span>
+            </span>
+          </div>
         </button>
       )}
 
@@ -1560,9 +1596,9 @@ export default function Chatbot() {
                   </h4>
                   <Crown size={12} className="text-[#D4AF37]" />
                 </div>
-                <p className="text-[10px] text-emerald-400 flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block animate-ping" />
-                  AI Live Hospitality · Shahi Host
+                <p className="text-[10px] text-[#F0DFA0] flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] inline-block shadow-[0_0_8px_#D4AF37]" />
+                  AI Royal Hospitality · 24/7 Shahi Host
                 </p>
               </div>
             </div>

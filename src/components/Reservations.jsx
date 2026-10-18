@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Calendar, Clock, Users, MessageSquare, CalendarCheck, Clock3, ArrowRight } from "lucide-react";
 import { useReservations } from "../context/ReservationsContext";
+import { usePolicy } from "../context/PolicyContext";
 import { RESTAURANT_PHONE } from "../utils/whatsapp";
 
 // ============================================================
@@ -12,6 +13,7 @@ import { RESTAURANT_PHONE } from "../utils/whatsapp";
 
 export default function Reservations() {
   const { addReservation } = useReservations();
+  const { openPolicy } = usePolicy();
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -302,6 +304,16 @@ export default function Reservations() {
           <button type="submit" className="am-res-submit">
             Confirm reservation
           </button>
+          <p className="text-[10.5px] text-center text-white/50 mt-2.5">
+            Seating and family hall ambiance strictly follow our{" "}
+            <button
+              type="button"
+              onClick={() => openPolicy("halal")}
+              className="text-[#D4AF37] hover:underline cursor-pointer"
+            >
+              Halal Dining Rules
+            </button>.
+          </p>
         </form>
       </div>
     </section>

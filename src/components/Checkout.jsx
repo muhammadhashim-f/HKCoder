@@ -5,6 +5,7 @@ import { useCart } from "../context/CartContext";
 import { useOrders } from "../context/OrdersContext";
 import { useAuth } from "../context/AuthContext";
 import { useVIPLoader } from "../context/LoadingContext";
+import { usePolicy } from "../context/PolicyContext";
 import { geocodeAddress } from "../utils/geocode";
 import { getWhatsAppOrderUrl, RESTAURANT_PHONE } from "../utils/whatsapp";
 
@@ -23,6 +24,7 @@ export default function Checkout() {
   const { addOrder } = useOrders();
   const { isLoggedIn, user } = useAuth();
   const { triggerLoader } = useVIPLoader();
+  const { openPolicy } = usePolicy();
 
   const [fulfillment, setFulfillment] = useState("delivery"); // "delivery" | "pickup"
   const [paymentMethod, setPaymentMethod] = useState("cod"); // "cod" | "card"
@@ -369,6 +371,24 @@ export default function Checkout() {
                 {placing && <Loader2 size={16} className="animate-spin" />}
                 {placing ? "Placing order..." : "Place order"}
               </button>
+              <p className="text-[10px] text-center text-white/50 mt-2.5">
+                By placing your order, you agree to our{" "}
+                <button
+                  type="button"
+                  onClick={() => openPolicy("terms")}
+                  className="text-[#D4AF37] hover:underline cursor-pointer"
+                >
+                  Terms of Service
+                </button>{" "}
+                and{" "}
+                <button
+                  type="button"
+                  onClick={() => openPolicy("refund")}
+                  className="text-[#D4AF37] hover:underline cursor-pointer"
+                >
+                  Refund Policy
+                </button>.
+              </p>
               {placeError && (
                 <p className="text-xs mt-3 text-center" style={{ color: "#E8846A" }}>{placeError}</p>
               )}

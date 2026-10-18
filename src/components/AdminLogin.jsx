@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ShieldCheck, Mail, Lock } from "lucide-react";
+import { usePolicy } from "../context/PolicyContext";
 
 // ============================================================
 // AL MADINA RESTAURANT — Admin Login
@@ -12,6 +13,7 @@ import { ShieldCheck, Mail, Lock } from "lucide-react";
 
 export default function AdminLogin() {
   const navigate = useNavigate();
+  const { openPolicy } = usePolicy();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -110,6 +112,17 @@ export default function AdminLogin() {
         <p className="text-xs text-center mt-5" style={{ color: "rgba(255,255,255,0.35)" }}>
           Demo credentials: admin@almadina.pk / admin123
         </p>
+
+        <div className="mt-4 pt-3 border-t border-white/10 text-center">
+          <button
+            type="button"
+            onClick={() => openPolicy("security")}
+            className="text-[11px] text-white/50 hover:text-[#D4AF37] inline-flex items-center gap-1.5 cursor-pointer transition-colors"
+          >
+            <ShieldCheck size={12} className="text-[#D4AF37]" />
+            Strict Admin Access Controls · Security Policy
+          </button>
+        </div>
       </div>
     </section>
   );

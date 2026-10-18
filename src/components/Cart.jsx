@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Trash2, ShoppingBag, ArrowLeft, Package } from "lucide-react";
+import { Trash2, ShoppingBag, ArrowLeft, Package, RotateCcw } from "lucide-react";
 import { useCart } from "../context/CartContext";
+import { usePolicy } from "../context/PolicyContext";
 
 // ============================================================
 // AL MADINA RESTAURANT — Cart Page
@@ -11,6 +12,7 @@ import { useCart } from "../context/CartContext";
 
 export default function Cart() {
   const { items, removeFromCart, updateQuantity, cartTotal } = useCart();
+  const { openPolicy } = usePolicy();
 
   return (
     <section
@@ -152,6 +154,16 @@ export default function Cart() {
               <Link to="/checkout" className="am-checkout-btn" style={{ display: "block", textAlign: "center", textDecoration: "none" }}>
                 Proceed to checkout
               </Link>
+              <div className="mt-4 pt-3 border-t border-white/5 text-center">
+                <button
+                  type="button"
+                  onClick={() => openPolicy("refund")}
+                  className="text-[11px] text-[#D4AF37]/80 hover:text-[#D4AF37] underline inline-flex items-center gap-1.5 cursor-pointer transition-colors"
+                >
+                  <RotateCcw size={12} />
+                  100% Taste & Replacement Guarantee · Read Refund Policy
+                </button>
+              </div>
             </div>
           </div>
         )}

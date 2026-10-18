@@ -24,11 +24,8 @@ const QUICK_LINKS = [
 ];
 
 const LEGAL_LINKS = [
-  { label: "Privacy policy", type: "privacy" },
-  { label: "Terms of service", type: "terms" },
-  { label: "Refund policy", type: "refund" },
-  { label: "Security policy", type: "security" },
-  { label: "Halal Dining Rules", type: "halal" },
+  { label: "Privacy Policy", type: "privacy" },
+  { label: "Terms of Service", type: "terms" },
 ];
 
 export default function Footer() {
